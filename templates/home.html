@@ -22,37 +22,36 @@
                             <thead>
                                 <tr>
                                     <th>Hostname</th>
-                                    <th data-toggle="tooltip" data-placement="left" title="When the node is part of the Primary Component, the typical return values are Joining, Waiting on SST, Joined, Synced or Donor. In the event that the node is part of a nonoperational component, the return value is Initialized.">State</th>
-                                    <th data-toggle="tooltip" data-placement="left" title="The node should only return a value of Primary. Any other value indicates that the node is part of a nonoperational component. This occurs in cases of multiple membership changes that result in a loss of quorum or in cases of split-brain situations.">Cluster Status</th>
-                                    <th data-toggle="tooltip" data-placement="left" title="">Cluster Size</th>
-                                    <th data-toggle="tooltip" data-placement="left" title="Each node in the cluster should provide the same value. When a node carries a different value, this indicates that it is no longer connected to rest of the cluster. Once the node reestablishes connectivity, it realigns itself with the other nodes.">State UUID</th>
-                                    <th data-toggle="tooltip" data-placement="left" title="Shows the total number of cluster changes that have happened, which you can use to determine whether or not the node is a part of the Primary Component. Each node in the cluster should provide the same value. When a node carries a different, this indicates that the cluster is partitioned. Once the node reestablish network connectivity, the value aligns itself with the others.">Conf ID</th>
-                                    <th data-toggle="tooltip" data-placement="left" title="Shows whether the node can accept queries">WSREP Ready</th>
-                                    <th data-toggle="tooltip" data-placement="left" title="Shows whether the node has network connectivity with any other nodes. When the value is ON, the node has a network connection to one or more other nodes forming a cluster component. When the value is OFF, the node does not have a connection to any cluster components.">WSREP Connected</th>
-                                    <th data-toggle="tooltip" data-placement="left" title="">Local Queue<br />(Send/Receive)</th>
-                                    <th data-toggle="tooltip" data-placement="left" title="Shows the average size of the local queue since the last status query.">Queue AVG<br />(Send/Receive)</th>
-                                    <th data-toggle="tooltip" data-placement="left" title="Shows the fraction of the time, since the status variable was last called, that the node paused due to Flow Control.">Flow control paused</th>
-                                    <th data-toggle="tooltip" data-placement="left" title="Shows the average distance between the lowest and highest sequence number, or seqno, values that the node can possibly apply in parallel. This represents the node’s potential degree for parallelization.">Cert deps distance</th>
+                                    <th><span data-toggle="tooltip" data-placement="left" title="When the node is part of the Primary Component, the typical return values are Joining, Waiting on SST, Joined, Synced or Donor. In the event that the node is part of a nonoperational component, the return value is Initialized.">State</span></th>
+                                    <th><span data-toggle="tooltip" data-placement="left" title="The node should only return a value of Primary. Any other value indicates that the node is part of a nonoperational component. This occurs in cases of multiple membership changes that result in a loss of quorum or in cases of split-brain situations.">Cluster Status</span></th>
+                                    <th><span data-toggle="tooltip" data-placement="left" title="">Cluster Size</span></th>
+                                    <th><span data-toggle="tooltip" data-placement="left" title="Each node in the cluster should provide the same value. When a node carries a different value, this indicates that it is no longer connected to rest of the cluster. Once the node reestablishes connectivity, it realigns itself with the other nodes.">State UUID</span></th>
+                                    <th><span data-toggle="tooltip" data-placement="left" title="Shows the total number of cluster changes that have happened, which you can use to determine whether or not the node is a part of the Primary Component. Each node in the cluster should provide the same value. When a node carries a different, this indicates that the cluster is partitioned. Once the node reestablish network connectivity, the value aligns itself with the others.">Conf ID</span></th>
+                                    <th><span data-toggle="tooltip" data-placement="left" title="Shows whether the node can accept queries">WSREP Ready</span></th>
+                                    <th><span data-toggle="tooltip" data-placement="left" title="Shows whether the node has network connectivity with any other nodes. When the value is ON, the node has a network connection to one or more other nodes forming a cluster component. When the value is OFF, the node does not have a connection to any cluster components.">WSREP Connected</span></th>
+                                    <th><span data-toggle="tooltip" data-placement="left" title="">Local Queue<br />(Send/Receive)</span></th>
+                                    <th><span data-toggle="tooltip" data-placement="left" title="Shows the average size of the local queue since the last status query.">Queue AVG<br />(Send/Receive)</span></th>
+                                    <th><span data-toggle="tooltip" data-placement="left" title="Shows the fraction of the time, since the status variable was last called, that the node paused due to Flow Control.">Flow control paused</span></th>
+                                    <th><span data-toggle="tooltip" data-placement="left" title="Shows the average distance between the lowest and highest sequence number, or seqno, values that the node can possibly apply in parallel. This represents the node’s potential degree for parallelization.">Cert deps distance</span></th>
                                 </tr>
                             </thead>
                             <tbody>
-                            {% for node in nodes %}
-                            <tr>
-                                <td>{{ node.hostname }}</td>
-                                <td><span class="tag label {% if (node.wsrep_local_state == '4') %}label-success{% else %}label-error{% endif %}">{{ node.wsrep_local_state_comment }}</span></td>
-                                <td><span class="tag label {% if (node.wsrep_cluster_status == 'Primary') %}label-success{% else %}label-error{% endif %}">{{ node.wsrep_cluster_status }}</span></td>
-                                <td>{{ node.wsrep_cluster_size }}</td>
-                                <td>{{ node.wsrep_cluster_state_uuid }}</td>
-                                <td>{{ node.wsrep_cluster_conf_id }}</td>
-                                <td><span class="tag label {% if (node.wsrep_ready == 'ON') %}label-success{% else %}label-error{% endif %}">{{ node.wsrep_ready }}</span></td>
-                                <td><span class="tag label {% if (node.wsrep_connected == 'ON') %}label-success{% else %}label-error{% endif %}">{{ node.wsrep_connected }}</span></td>
-                                <td>{{ node.wsrep_local_send_queue }} / {{ node.wsrep_local_recv_queue }}</td>
-                                <td>{{ node.wsrep_local_send_queue_avg}} / {{ node.wsrep_local_recv_queue_avg }}</td>
-                                <td>{{ node.wsrep_flow_control_paused }}</td>
-                                <td>{{ node.wsrep_cert_deps_distance }}</td>
-                            </tr>
-                            {% endfor %}
-
+                                {% for node in nodes %}
+                                <tr>
+                                    <td>{{ node.hostname }}</td>
+                                    <td><span class="tag label {% if (node.wsrep_local_state == '4') %}label-success{% else %}label-error{% endif %}">{{ node.wsrep_local_state_comment }}</span></td>
+                                    <td><span class="tag label {% if (node.wsrep_cluster_status == 'Primary') %}label-success{% else %}label-error{% endif %}">{{ node.wsrep_cluster_status }}</span></td>
+                                    <td>{{ node.wsrep_cluster_size }}</td>
+                                    <td>{{ node.wsrep_cluster_state_uuid }}</td>
+                                    <td>{{ node.wsrep_cluster_conf_id }}</td>
+                                    <td><span class="tag label {% if (node.wsrep_ready == 'ON') %}label-success{% else %}label-error{% endif %}">{{ node.wsrep_ready }}</span></td>
+                                    <td><span class="tag label {% if (node.wsrep_connected == 'ON') %}label-success{% else %}label-error{% endif %}">{{ node.wsrep_connected }}</span></td>
+                                    <td>{{ node.wsrep_local_send_queue }} / {{ node.wsrep_local_recv_queue }}</td>
+                                    <td>{{ node.wsrep_local_send_queue_avg}} / {{ node.wsrep_local_recv_queue_avg }}</td>
+                                    <td>{{ node.wsrep_flow_control_paused }}</td>
+                                    <td>{{ node.wsrep_cert_deps_distance }}</td>
+                                </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>
