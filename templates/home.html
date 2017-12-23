@@ -39,13 +39,13 @@
                                 {% for node in nodes %}
                                 <tr>
                                     <td>{{ node.hostname }}</td>
-                                    <td><span class="tag label {% if (node.wsrep_local_state == '4') %}label-success{% else %}label-error{% endif %}">{{ node.wsrep_local_state_comment }}</span></td>
-                                    <td><span class="tag label {% if (node.wsrep_cluster_status == 'Primary') %}label-success{% else %}label-error{% endif %}">{{ node.wsrep_cluster_status }}</span></td>
+                                    <td><span class="tag label {% if (node.wsrep_local_state == '4') %}label-success{% else %}label-warning{% endif %}">{{ node.wsrep_local_state_comment }}</span></td>
+                                    <td><span class="tag label {% if (node.wsrep_cluster_status == 'Primary') %}label-success{% else %}label-warning{% endif %}">{{ node.wsrep_cluster_status }}</span></td>
                                     <td>{{ node.wsrep_cluster_size }}</td>
                                     <td>{{ node.wsrep_cluster_state_uuid }}</td>
                                     <td>{{ node.wsrep_cluster_conf_id }}</td>
-                                    <td><span class="tag label {% if (node.wsrep_ready == 'ON') %}label-success{% else %}label-error{% endif %}">{{ node.wsrep_ready }}</span></td>
-                                    <td><span class="tag label {% if (node.wsrep_connected == 'ON') %}label-success{% else %}label-error{% endif %}">{{ node.wsrep_connected }}</span></td>
+                                    <td><span class="tag label {% if (node.wsrep_ready == 'ON') %}label-success{% else %}label-warning{% endif %}">{{ node.wsrep_ready }}</span></td>
+                                    <td><span class="tag label {% if (node.wsrep_connected == 'ON') %}label-success{% else %}label-warning{% endif %}">{{ node.wsrep_connected }}</span></td>
                                     <td>{{ node.wsrep_local_send_queue }} / {{ node.wsrep_local_recv_queue }}</td>
                                     <td>{{ node.wsrep_local_send_queue_avg}} / {{ node.wsrep_local_recv_queue_avg }}</td>
                                     <td>{{ node.wsrep_flow_control_paused }}</td>
@@ -61,7 +61,7 @@
         <script>
             $(function () {
               $('[data-toggle="tooltip"]').tooltip();
-              setTimeout(startRefresh, 5000);
+              setTimeout(startRefresh, 50000);
             });
             function startRefresh() {
                 location.reload();

@@ -19,9 +19,9 @@ def home():
     nodes = []
     for key, host in nodes_item:
         dict_wsrep = {}
-        cnx = pymysql.connect(host=host, port=int(conf.get('access', 'port')), user=conf.get('access', 'user'), passwd=conf.get('access', 'pass'), db='mysql')
 
         try:
+            cnx = pymysql.connect(host=host, port=int(conf.get('access', 'port')), user=conf.get('access', 'user'), passwd=conf.get('access', 'pass'), db='mysql')
             with cnx.cursor() as cursor:
                 cursor.execute("SELECT @@hostname as hostname;")
                 dict_wsrep['hostname'] = cursor.fetchone()[0]
@@ -31,11 +31,14 @@ def home():
 
                 for row in res:
                     dict_wsrep[row[0]] = row[1]
-
-        finally:
             cnx.close()
+        except:
+            dict_wsrep['hostname'] = host
+            dict_wsrep['wsrep_local_state'] = 0
+            dict_wsrep['wsrep_local_state_comment'] = 'Error'
 
         nodes.append(dict_wsrep)
+
     return render_template('home.html', nodes=nodes)
 
 
