@@ -1,15 +1,20 @@
 # MariaDB Cluster WEB UI
 
-Interface WEB de surveillance d'un cluster MariaDB
+WEB monitoring interface for a MariaDB cluster
 
-![Capture d'écran](https://raw.githubusercontent.com/SebastienReuiller/MariaDBClusterWebUI/master/assets/screenshot1.png)
+![Screenshot](https://raw.githubusercontent.com/Jooyeshgar/MariaDBClusterWebUI/master/assets/screenshot1.png)
 
 
 ## Installation
 
 ```bash
-virtualenv venv -p /usr/bin/python3
-source venv/bin/activate
-pip install -r requirements.txt
+pip3 install -r requirements.txt
+mv nodes-default.conf nodes.conf
+vi nodes.conf
 ```
 
+## Run
+
+```bash
+python3 main.py
+```
